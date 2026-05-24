@@ -95,4 +95,3 @@ with tab4:
     cm_data = [[6780, 1180], [280, 1760]]
     fig_cm = px.imshow(cm_data, labels=dict(x="Predicted Label", y="True Label", color="Customer Count"), x=['Stayed (0)', 'Churned (1)'], y=['Stayed (0)', 'Churned (1)'], text_auto=True, color_continuous_scale='Blues')
     st.plotly_chart(fig_cm, use_container_width=True)
-
