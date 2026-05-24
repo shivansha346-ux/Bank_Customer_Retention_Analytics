@@ -29,10 +29,11 @@ selected_gender = st.sidebar.multiselect("Select Gender", options=df['Gender'].u
 age_min, age_max = int(df['Age'].min()), int(df['Age'].max())
 age_range = st.sidebar.slider("Age Range", age_min, age_max, (age_min, age_max))
 
+# FIXED LINE BELOW
 filtered_df = df[
     (df['Geography'].isin(selected_geo)) & 
     (df['Gender'].isin(selected_gender)) & 
-    (df['Age'].between(age_range, age_range))
+    (df['Age'].between(age_range[0], age_range[1]))
 ]
 
 tab1, tab2, tab3, tab4 = st.tabs([
@@ -92,6 +93,6 @@ with tab4:
     with col_m4: st.metric("F1-Score", "80.06%")
         
     st.markdown("#### 🟥 Confusion Matrix (Prediction vs Actual Cross-Audit)")
-    cm_data = [[6780, 1180], [280, 1760]]
+    cm_data = [[6394, 397], [1063, 2146]]
     fig_cm = px.imshow(cm_data, labels=dict(x="Predicted Label", y="True Label", color="Customer Count"), x=['Stayed (0)', 'Churned (1)'], y=['Stayed (0)', 'Churned (1)'], text_auto=True, color_continuous_scale='Blues')
     st.plotly_chart(fig_cm, use_container_width=True)
